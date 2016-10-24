@@ -1,0 +1,17 @@
+<div class="col-md-12">
+  <div class="store">
+    <%= link_to "Edit", edit_store_path(@store), class: "btn btn-primary pull-right" %>
+  </div>
+  <h2> <%= @store.name %></h2>
+  <p> <%= @store.address %></p>
+  <p> <%= @store.description %></p>
+  <hr>
+  <div id="map" style='width: 100%; height: 600px;'></div>
+</div>
+
+
+<script>
+  $(function() {
+    gmap_index(<%= raw @hash.to_json %>);
+  })
+</script>

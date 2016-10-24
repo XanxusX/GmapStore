@@ -1,0 +1,39 @@
+<div class="col-md-12">
+  <div class="store">
+    <%= link_to "New store", new_store_path, class: "btn btn-primary pull-right" %>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>Name</td>
+        <td>Address</td>
+        <td>Description</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @stores.each do |store| %>
+        <tr>
+          <td>#</td>
+          <td><%= link_to truncate(store.name, length: 15), store_path(store) %></td>
+          <td> <%= store.address %> </td>
+          <td><%= store.description %></td>
+          <td>
+
+              <%= link_to "Edit", edit_store_path(store), class: "btn btn-sm btn-default" %>
+              <%= link_to "Delete", store_path(store), class: "btn btn-sm btn-default",method: :delete, data: { confirm: "Are you sure?"} %>
+
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <hr>
+  <div id="map" style='width: 100%; height: 600px;'></div>
+</div>
+
+<script>
+  $(function() {
+    gmap_index(<%= raw @hash.to_json %>);
+  });
+</script>
