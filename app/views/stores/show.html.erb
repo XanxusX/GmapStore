@@ -1,10 +1,31 @@
 <div class="col-md-12">
   <div class="store">
+    <%= link_to "New Comment", new_store_review_path(@store), class: "btn btn-warning pull-right" %>
     <%= link_to "Edit", edit_store_path(@store), class: "btn btn-primary pull-right" %>
   </div>
   <h2> <%= @store.name %></h2>
   <p> <%= @store.address %></p>
   <p> <%= @store.description %></p>
+  <hr>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th colspan="2">Reviews</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reviews.each do |review| %>
+      <tr>
+        <td><div class="star-rating" data-score= <%= review.rating %>></div></td>
+        <td><%= link_to "Edit", edit_store_review_path(review.store,review), class: "btn btn-default btn-xs" %>
+        <%= link_to "Delete", store_review_path(review.store,review), method: :delete, class: "btn btn-default btn-xs", data: { confirm: "Are you sure?"} %></td>
+      </tr>
+      <tr>
+        <td><%= review.comment %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
   <hr>
   <div id="map" style='width: 100%; height: 600px;'></div>
 </div>
@@ -13,5 +34,13 @@
 <script>
   $(function() {
     gmap_index(<%= raw @hash.to_json %>);
+
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+        return $(this).attr('data-score');
+      }
+    });
   })
 </script>

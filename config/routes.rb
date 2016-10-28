@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :stores
+  devise_for :users
+  resources :stores do
+    resources :reviews
+  end
 
   root "stores#index"
   # The priority is based upon order of creation: first created -> highest priority.

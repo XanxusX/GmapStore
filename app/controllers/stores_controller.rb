@@ -23,6 +23,7 @@ class StoresController < ApplicationController
 
   def show
     @store = Store.find(params[:id])
+    @reviews = @store.reviews
     @hash = Gmaps4rails.build_markers(@store) do |store, marker|
       marker.lat store.latitude
       marker.lng store.longitude
