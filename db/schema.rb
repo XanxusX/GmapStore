@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028183115) do
+ActiveRecord::Schema.define(version: 20161104185055) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer  "rating"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20161028183115) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "store_id"
+    t.integer  "user_id"
   end
 
   create_table "stores", force: :cascade do |t|
@@ -27,8 +28,10 @@ ActiveRecord::Schema.define(version: 20161028183115) do
     t.text     "description"
     t.decimal  "latitude"
     t.decimal  "longitude"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "user_id"
+    t.integer  "reviews_count", default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,6 +47,7 @@ ActiveRecord::Schema.define(version: 20161028183115) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

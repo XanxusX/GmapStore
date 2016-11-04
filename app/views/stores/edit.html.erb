@@ -6,8 +6,8 @@
     <div class="form-group">
       <%= f.input :name, input_html: { class: "form-control"} %>
       <%= f.input :address, input_html: { class: "form-control"} %>
-      <%= f.input :latitude, input_html: {  id: "map_lat", class: "form-control"} %>
-      <%= f.input :longitude, input_html: { id: "map_lng", class: "form-control"} %>
+      <%= f.hidden_field :latitude, id: "map_lat" %>
+      <%= f.hidden_field :longitude, id: "map_lng" %>
       <%= f.input :description, input_html: { class: "form-control"} %>
     </div>
     <%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submitting..."} %>
@@ -15,11 +15,6 @@
   <hr>
   <div id="map" style='width: 100%; height: 400px;'></div>
 </div>
-
-<!--<div class="container">
-  <div id="map" style='width: 100%; height: 800px;'></div>
-</div>-->
-
 
 <script>
   $(function() {

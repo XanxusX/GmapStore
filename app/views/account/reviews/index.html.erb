@@ -1,0 +1,41 @@
+<div class="col-md-12">
+
+  <h2 class="text-center"> My Reviews </h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th> Rating </th>
+        <th> Comment </th>
+        <th> Store Name </th>
+        <th> Last Update </th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @reviews.each do |review| %>
+        <tr>
+          <td> <div class="star-rating" data-score= <%= review.rating %>> </td>
+          <td> <%= review.comment %> </td>
+          <td> <%= link_to review.store.name, store_path(review.store) %> </td>
+          <td> <%= review.updated_at %> </td>
+          <td> <%= link_to('Edit', edit_store_review_path(review.store, review), class: "btn btn-info btn-xs") %></td>
+          <td> <%= link_to('Delete', store_review_path(review.store, review), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  $(function() {
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+        return $(this).attr('data-score');
+      }
+    });
+  })
+</script>

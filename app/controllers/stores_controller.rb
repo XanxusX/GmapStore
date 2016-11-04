@@ -1,4 +1,6 @@
 class StoresController < ApplicationController
+  before_action :authenticate_user!, except: [:index,:show]
+
   def index
     @stores = Store.all
     @hash = Gmaps4rails.build_markers(@stores) do |store, marker|
@@ -13,7 +15,7 @@ class StoresController < ApplicationController
   end
 
   def create
-    @store = Store.new(store_params)
+    @store = current_user.stores.new(store_params)
     if @store.save
       redirect_to stores_path, notice: "Successed!"
     else
@@ -32,11 +34,11 @@ class StoresController < ApplicationController
   end
 
   def edit
-    @store = Store.find(params[:id])
+    @store = current_user.stores.find(params[:id])
   end
 
   def update
-    @store = Store.find(params[:id])
+    @store = current_user.stores.find(params[:id])
     if @store.update(store_params)
       redirect_to store_path(@store), notice: "Updated!"
     else
@@ -45,7 +47,7 @@ class StoresController < ApplicationController
   end
 
   def destroy
-    @store = Store.find(params[:id])
+    @store = current_user.stores.find(params[:id])
     @store.destroy
     redirect_to stores_path, alert: "Deleted!"
   end

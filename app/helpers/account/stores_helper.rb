@@ -1,0 +1,2 @@
+module Account::StoresHelper
+end

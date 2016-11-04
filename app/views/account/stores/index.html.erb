@@ -1,0 +1,33 @@
+<div class="col-md-12">
+
+  <h2 class="text-center"> My Store </h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th> # </th>
+        <th> Name </th>
+        <th> Address </th>
+        <th> Description </th>
+        <th> Review Count </th>
+        <th> Last Update </th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @stores.each do |store| %>
+        <tr>
+          <td> # </td>
+          <td> <%= link_to(store.name, store_path(store)) %> </td>
+          <td> <%= store.address %> </td>
+          <td> <%= store.description %> </td>
+          <td> <%= store.reviews.size %> </td>
+          <td> <%= store.updated_at %> </td>
+           <td> <%= link_to('Edit', edit_store_path(store), class: "btn btn-info btn-xs") %></td>
+          <td> <%= link_to('Delete', store_path(store), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
