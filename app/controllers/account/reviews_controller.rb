@@ -2,6 +2,6 @@ class Account::ReviewsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @reviews = current_user.reviews.order("updated_at DESC")
+    @reviews = current_user.reviews.recent
   end
 end

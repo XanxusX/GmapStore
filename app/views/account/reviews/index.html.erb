@@ -17,9 +17,9 @@
       <% @reviews.each do |review| %>
         <tr>
           <td> <div class="star-rating" data-score= <%= review.rating %>> </td>
-          <td> <%= review.comment %> </td>
-          <td> <%= link_to review.store.name, store_path(review.store) %> </td>
-          <td> <%= review.updated_at %> </td>
+          <td> <%= render_review_comment(review) %> </td>
+          <td> <%= link_to truncate(review.store.name, length:15), store_path(review.store) %> </td>
+          <td> <%= review.updated_at.to_s(:long) %> </td>
           <td> <%= link_to('Edit', edit_store_review_path(review.store, review), class: "btn btn-info btn-xs") %></td>
           <td> <%= link_to('Delete', store_review_path(review.store, review), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs") %></td>
         </tr>

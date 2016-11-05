@@ -1,18 +1,8 @@
 <div class="col-md-4 col-md-offset-4">
   <h1>Edit Store</h1>
 
-  <hr>
-  <%= simple_form_for @store do |f| %>
-    <div class="form-group">
-      <%= f.input :name, input_html: { class: "form-control"} %>
-      <%= f.input :address, input_html: { class: "form-control"} %>
-      <%= f.hidden_field :latitude, id: "map_lat" %>
-      <%= f.hidden_field :longitude, id: "map_lng" %>
-      <%= f.input :description, input_html: { class: "form-control"} %>
-    </div>
-    <%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submitting..."} %>
-  <% end %>
-  <hr>
+  <%= render "form", store: @store %>
+
   <div id="map" style='width: 100%; height: 400px;'></div>
 </div>
 

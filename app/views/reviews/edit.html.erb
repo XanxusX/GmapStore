@@ -1,15 +1,7 @@
 <div class="col-md-4 col-md-offset-4">
   <h1>Edit Reivew</h1>
 
-  <%= simple_form_for [@store,@review] do |f| %>
-    <div class="form-group">
-    <div id="star-rating" data-score= <%= @review.rating %>></div>
-    <%= f.input :comment, input_html: { class: "form-control"} %>
-    </div>
-    <div class="form-actions">
-      <%= f.submit "Submit", disable_with: "Submitting...", class: "btn btn-primary" %>
-    </div>
-  <% end %>
+ <%= render "form", review: @review %>
 </div>
 
 <script>
